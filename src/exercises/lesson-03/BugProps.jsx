@@ -12,11 +12,12 @@
   Use the commented "Explanation" section at the bottom of this lesson's components.
 */
 
-export default function BugProps({ name = 'friend' }) {
-  let message = 'Hello, ' + name;
+import { useState } from 'react';
 
+export default function BugProps({ name = 'friend' }) {
+  const [message, setMessage] = useState('Hello, ' + name);
   function handleChange() {
-    message = 'Hi, ' + name + '!';
+    setMessage('Hi, ' + name + '!');
   }
 
   return (
@@ -28,4 +29,7 @@ export default function BugProps({ name = 'friend' }) {
 }
 
 // Explanation:
-// (Write your explanation here)
+// The bug was caused because the message was stored in a regular variable.
+// React does not track regular variables, so changing it did not update the UI.
+// I fixed it by storing the message in state with useState.
+// Now when setMessage is called, React re-renders the component and shows the updated message.
