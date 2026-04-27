@@ -13,8 +13,7 @@ export default function BugMutatedState() {
   let [count, setCount] = useState(0);
 
   function handleAdd() {
-    count++;
-    setCount(count);
+    setCount(count + 1);
   }
 
   return (
@@ -26,4 +25,7 @@ export default function BugMutatedState() {
 }
 
 // Explanation:
-// (Write your explanation here)
+// The bug was caused by mutating the state directly using count++.
+// In React, state should never be modified directly because React does not track such changes.
+// Instead, we should use the state setter function (setCount) to update the value.
+// Using setCount ensures React detects the change and re-renders the component properly.
